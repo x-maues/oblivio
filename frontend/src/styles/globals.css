@@ -1,23 +1,22 @@
 @import "tailwindcss";
 
-
 html, body {
     padding: 0;
     margin: 0;
     min-height: 100vh;
     height: 100%;
-    background: #f3f8e5;
-    font-family: 'DM Sans', sans-serif;
-    color: #1d1b19;
+    background: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    color: #1A1A1A;
     scroll-behavior: smooth;
   }
   
   :root {
-    --color-bg: #f3f8e5;
-    --color-accent: #e7e2c9;
-    --color-border: #b8b09c;
-    --color-text: #554c3c;
-    --color-card: #f9f7ef;
+    --color-bg: #e7c2c2;
+    --color-accent: #F0F7F4;
+    --color-border: #E5E7EB;
+    --color-text: #1A1A1A;
+    --color-card: #FFFFFF;
     --radius: 18px;
     --font-main: 'DM Sans', sans-serif;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -25,25 +24,25 @@ html, body {
   
   @layer base {
     h1, h2, h3, h4, h5, h6 {
-      @apply font-bold text-[#7a6a4f];
+      @apply font-bold text-[#1A1A1A];
     }
   }
   
   @layer components {
     .btn-primary {
-      @apply bg-[#7a6a4f] text-[#f3f8e5] px-6 py-3 rounded-none border-2 border-[#b8b09c] hover:bg-[#5a4a2f] hover:border-[#7a6a4f] transition-all duration-300;
+      @apply bg-[#2E7D32] text-white px-6 py-3 rounded-lg border-2 border-[#E5E7EB] hover:bg-[#4CAF50] hover:border-[#2E7D32] transition-all duration-300;
     }
     
     .card {
-      @apply bg-[#f9f7ef] border-2 border-[#b8b09c] p-6 hover:border-[#7a6a4f] hover:translate-y-[-8px] hover:scale-[1.03] transition-all duration-300;
+      @apply bg-white border-2 border-[#E5E7EB] p-6 rounded-xl hover:border-[#2E7D32] hover:translate-y-[-4px] hover:shadow-md transition-all duration-300;
     }
   
     .nav-link {
-      @apply text-[#7a6a4f] font-semibold px-6 py-2 border-2 border-transparent hover:bg-[#f9f7ef] hover:text-[#5a4a2f] hover:border-[#b8b09c] transition-all duration-300;
+      @apply text-[#1A1A1A] font-semibold px-6 py-2 border-2 border-transparent hover:bg-[#F0F7F4] hover:text-[#2E7D32] hover:border-[#E5E7EB] transition-all duration-300;
     }
   
     .nav-link.active {
-      @apply bg-[#f9f7ef] text-[#5a4a2f] border-[#b8b09c];
+      @apply bg-[#F0F7F4] text-[#2E7D32] border-[#E5E7EB];
     }
   }
   
