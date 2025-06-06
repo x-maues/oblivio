@@ -1,0 +1,262 @@
+Polkadot AssetHub Hackathon 2025 🚀 Go Beyond dApps — Build with Solidity on Polkadot using PolkaVM 🚀
+
+Leverage PolkaVM to push the boundaries of what’s possible onchain!
+
+✨ Hackathon Overview
+Polkadot AssetHub Hackathon is first of its kind hybrid hackathon scheduled on the occasion of the upcoming Hub launch which lower the entry barrier and opens up the opportunities for solidity developers to enter the Polkadot ecosystem more natively than ever before!
+
+This hackathon provides a unique opportunity to pioneer applications at the intersection of EVM's developer experience and Polkadot's interoperable ecosystem. AssetHub serves as a critical component in the Polkadot ecosystem, enabling efficient management of both fungible and non-fungible assets, now with a multi-dimensional programability layer for the first ever time. Join the forefront of blockchain innovation during the landmark Hub launch!
+
+⚙️ Technical Focus: PolkaVM & AssetHub
+Participants will work with PolkaVM, allowing Solidity contracts to run natively within the Polkadot ecosystem. AssetHub provides an exquisite experience for creating, managing, and using both fungible and non-fungible assets. This powerful combination enables developers to build applications with:
+
+Familiar Solidity development tools while exploring Polkadot's diverse ecosystem
+Faster compilation times due to RISC-V register machine
+Reduced Word Size and future-proofing approach
+Multi-Dimensional Gas
+More than 4x times the limit for the code size compared to standard EVMs (24kb vs 100kb, which can be further increased in the future)
+⏳ Phases & Structure: The Journey to Villa Calangute, Goa
+The hackathon follows a two-stage format designed to identify and nurture the most promising projects:
+
+Phase 1: The Online Innovation Arena (Starts: May 30th | Duration: 1 Week)
+
+Platform: Right here on DoraHacks!
+Participation: Open to everyone, globally! Form your teams or go solo. Maximum team size is 4.
+Challenge: Develop innovative projects that utilize the unique capabilities of Pallet-Revive on AssetHub.
+Lifelines: Hackathon Bible, Mini-workshops & On-demand Mentoring
+Goal: Build a functional prototype/MVP and submit your project by the deadline.Note for hackers
+PolkaVM(via pallet-revive) on Assethub currently does not expose precompiles for interacting with native protocol feature(staking, governance, xcm etc). This means all logic must live entirely within your solidity contracts - no direct calls to runtime pallets(yet). Keeping this in mind, Its a challenge to push whats possible using pure Solidity.Smart Contract Development
+Polkadot enables smart contract deployment via PolkaVM. This allows using familiar Ethereum tools and libraries while leveraging Polkadot’s robust ecosystem. PolkaVM is live on the Polkadot testnet Westend. ✅
+
+Refer to the known issues document if you're running into issues deploying contracts or using any of the tools below. If you have a new bug or problem, please raise an issue in the Contracts Bug tracker on Github.
+
+📚 Development Environments
+There are multiple development environments already available for Polkadot smart contract development. Here are some of the most popular ones:
+
+🖥️ Polkadot Remix IDE - a web-based IDE that allows you to write, test, and deploy smart contracts directly in your browser. It's integrated with compatible chains: you can deploy right from the browser
+
+⚒️ Hardhat - a popular Ethereum development environment that can be used for Polkadot smart contract development with the help of custom plugins
+
+👨‍💻 Contract Interaction Libraries
+Several libraries can be used to interact with smart contracts deployed on Polkadot:
+
+🔵 Ethers.js
+
+⚡ viem
+
+🌐 Web3.js
+
+🐍 Web3.py
+
+🧙 Wagmi
+
+📚 Tutorials and Guides
+Here you can find some useful tutorials and resources to help you get started with smart contract development on Polkadot:
+
+✍️ Create a Smart Contract - a step-by-step guide to creating your first smart contract on Polkadot
+
+⚙️ Test and Deploy with Hardhat - a guide to testing and deploying your smart contract using Hardhat
+
+🎨 Deploy a NFT - a tutorial on deploying an NFT smart contract on Polkadot
+
+💰 Deploy an ERC-20 - a tutorial on deploying an ERC-20 token smart contract on Polkadot
+
+🛠️ Create a dApp with Viem - a tutorial on creating a simple dApp using the Viem library
+
+🛠️ Create a dApp with Ethers.js - a tutorial on creating a simple dApp using the Ethers.js library
+
+🎥 Deploy Rust and Solidity contracts – a workshop showcasing how to deploy and interact with Solidity and Rust contracts on the Polkadot Hub
+
+46:27: Deploy Solidity contract using Remix
+48:10: Call Rust contract from Solidity contract (on a local testnet)
+48:27: Run node with RPC exposed
+49:11: Inspect Solidity contract
+50:26: Run the commands make [..etc] to deploy the Rust contract
+52:26: Run the commands to build and deploy the Solidity contract
+53:58: See the gas estimates of both
+54:53: Call Solidity contract that calls the Rust contract
+57:45: Use polkatool to dissassemble the contract
+🔑 How to Connect to Polkadot Hub
+You can use any Ethereum-compatible wallet wallet to connect to Polkadot Hub.
+
+For example, you can use MetaMask and connect it to Polkadot Hub by following the Connect your Wallet guide.
+
+💧 Polkadot Faucet
+Need testnet tokens? Get some from the Polkadot Faucet 💧
+
+Note: Use Westend network & select AssetHub chain!
+
+🔎 Hub Explorer
+Blockscout Explorer for Westend Hub
+
+🏆 Starter Templates
+Jumpstart your smart contract dApp with these templates:
+
+create-polkadot-dapp - a scaffolding tool to generate project boilerplates. Explore the react-solidity template located in the templates folder which comes pre-configured with React, Tailwind CSS, and Ethers.js for frontend interaction with your smart contracts
+
+hardhat-polkadot-example - a demo for how to use Hardhat with Polkadot.
+
+🧙 Alternative Smart Contract Languages
+Besides Solidity, you can also use Rust to write smart contracts for Polkadot. The ink! library is a popular choice for Rust-based smart contract development.
+
+🔗 ink! Docs (compatible with Westend/Kusama Asset Hub from v6 )PAH Hackathon Tracks
+⚠️ The listed tracks are not limits - they're launchpads. They are meant to spark your imagination not constrain it. Think of then as staring points to help you explore whats possible on Assethub. If you have an idea that pushes boundaries, challenge assumptions or simply excites you - go for it
+
+Core Token Innovation
+Challenge: Build innovative and complex fungible (like ERC-20) or non-fungible (like ERC-721/1155) tokens entirely within Solidity smart contracts on Asset Hub. Focus on novel tokenomics, advanced internal logic, or unique NFT mechanics that do not require direct interaction with the Asset Hub runtime's native pallets (e.g., native asset transfers or XCM).
+Example Project Ideas
+An ERC-20 token with a unique internal vesting schedule, burning mechanism, or deflationary model.
+An NFT collection where rarity, traits, or evolution are dynamically managed purely by Solidity logic within the contract.
+A simple, self-contained escrow contract for ERC-20 tokens deployed by the contract itself.
+A reputation token or loyalty point system entirely handled by a single Solidity contract.
+Dev Ex and Tooling for PolkaVM Solidity
+Challenge: Create essential tools, libraries that significantly improve the developer experience for building, testing, and deploying Solidity smart contracts on PolkaVM via pallet-revive on Asset Hub.
+
+Example Project Ideas
+
+Enhanced Hardhat/Truffle plugins tailored for Asset Hub's pallet-revive proxy (e.g., better local testing environment setup, gas estimation for PolkaVM).
+Client-side libraries (e.g., JavaScript/TypeScript, Python) that simplify interaction with Solidity contracts deployed via pallet-revive (beyond basic web3.js/ethers.js calls)
+Open-source boilerplate contracts, template repositories, or standard libraries optimized for PolkaVM's execution characteristics.
+Static analysis tools or basic security linters for Solidity code that account for the PolkaVM environment.
+Hybrid Solutions & Future Vision(Solidity + Offchain)
+Challenge: Design and prototype a project where the core logic (e.g., AI model, DePIN orchestration, complex data processing) resides off-chain, but a self-contained Solidity smart contract on Asset Hub plays a crucial role in the system's tokenomics or coordination. The project must clearly demonstrate the interaction between the off-chain component and the on-chain Solidity contract.
+
+Example Project Ideas:
+
+For AI agents: A project where an off-chain AI agent performs a task, and a Solidity contract on Asset Hub issues pre-defined ERC-20 tokens as rewards to the agent or users based on off-chain verified outcomes (e.g., an oracle provides a simple flag to the contract).
+For DePIN: A proof-of-concept where an off-chain device streams data, and a Solidity contract on Asset Hub manages an internal token balance for that device, incrementing it based on off-chain service completion (e.g., a centralized server calls the contract).
+A project that outlines how a specific dApp would leverage future runtime precompiles on Asset Hub, demonstrating the current Solidity contract as a foundational piece ready for future integration.
+High Performance Contract Computing.
+Challenge: Leverage the exceptional computational speed of PolkaVM to implement complex algorithms or novel on-chain computations directly within your Solidity smart contract. This track encourages exploring use cases like cryptographic verifiers, efficient data processing, or even proof-of-concept interpreters that would typically be too expensive or slow on other blockchain VMs.
+Example Project Ideas
+A Solidity contract implementing a simplified cryptographic primitive (e.g., a hash function not natively available, or a component of a ZKP verifier like STARK/BLS).
+A basic interpreter for a simple domain-specific language (DSL) written entirely in Solidity.
+Contracts demonstrating efficient on-chain data compression/decompression algorithms for limited data.
+On-chain game logic that requires more complex calculations than typical EVM-based games (e.g., basic physics simulation, pathfinding for game entities).Recommended Practices & Things to avoid in PolkaVM + revive
+Compilation and Tooling
+✅ Do	❌ Avoid	Reason
+Use resolc, the official revive frontend	Avoid compiling directly with solc unless you’re extracting YUL IR	resolc manages YUL -> LLVM -> RISC-V pipeline; solc alone does not generate PolkaVM compatible output
+Write portable solidity code with no reliance on EVM gas tricks	Avoid gas golfing and inline assembly optimizations	PolkaVM is cheaper and uses a different weight based execution model
+Assume via-ir compilation semantics	Don't expect direct EVM compilation behaviour	revive always uses YUL IR; small differences can arise in variable layout, memory handling etc.
+Runtime Behavior Differences
+✅ Do	❌ Avoid	Reason
+use call, delegatecall, staticall carefully and add re-entrancy protections	Relying on gas limit in these calls	revive ignores user-supplied gas limits and forwards all available resources
+use modifiers or checks to prevent re-entrancy protections	Assuming send()/transfer() are safe	send()/transfer() are deprecated and revive injects no gauranteed protection unless detected heuristically
+Understand that constructor and runtime code are the same	Expecting different deploy/runtime sections like EVM	All code is deployed as one blob; codesize and calldataload behave differently in constructors
+Memory Model & YUL Functions
+✅ Do	❌ Avoid	Reason
+Stay within 64KB memory usage	Accessing memory offsets> 64KB	PolkaVM uses a fixed 64KB heap; out of bounds access will trap your contract
+Rely on mload, mstore, mcopy, msize normally	Trusting msize to be accurate for unused memory	Compiler might optimize memory usage differently than on EVM
+🛑 Disabled or Changed opcodes
+⚠️Opcode	Behaviour in PolkaVM
+calldataload, calldatacopy(in constructor)	Always returns 0 or ignores offset
+codecopy	Only valid during contract constructor
+invalid	Traps contract but doesn't burn all gas
+pc, extcodecopy, selfdestruct, blobhash, blobbasefee	❌ Compile time error - unsupported or obsolete
+gas, gas limit	Return weight limit's ref_time instead(not gas)
+Contract Deployment(create, create2)
+✅ Do	❌ Avoid	Reason
+Use normal new keyword syntax	Manually crafting deployment bytecode in YUL or assembly	revive uses contract hash + constructor args model; manual assembly will break
+let resolc handle constructor offset and codehash passing	Don't assume EVM behaviour of concatenating deploy code + constructor args	
+Precompile and Storage Caveats
+✅ Do	❌ Avoid	Reason
+Understand ED(Existential Deposit) handling	Assuming account balances work like Ethereum	PolkaVM substracts ED from reported balances sends x + ED under the hood
+Be aware of fixed size for hash, contract code	Expecting datasize, dataoffset to behave like EVM	They return fixed 32 byte contract info in revive
+Developer Experience Tips
+✅ Do	❌ Avoid	Reason
+Write clean, modular, high-level Solidity	Optimizing for gas savings or bytecode size	Transaction cost is already low in PolkaVM; micro-optimization not worth the complexity
+Write tests that mimic runtime condition in revive	Assuming EVM behaviour for deploy/runtime interaction	revive has subtle differences not covered by standard EVM tools
+Consult the Differences to Ethereum section often	Blindly porting Ethereum contracts	PolkaVM is not 1:1 EVM clone though compatibility is highSolidity on PolkaVM (revive) - Examples of Correct vs Incorrect Usage
+This guide provides code examples for key differences and pitfalls when writing Solidity for PolkaVM with the revive compiler.
+
+⚠️ 1. Constructor vs Runtime Code
+Wrong (EVM assumption: deploy code separate):
+
+constructor() {
+    bytes memory code = type(MyLibrary).creationCode; // not meaningful
+}
+Correct (PolkaVM: constructor = runtime code):
+
+constructor() {
+    // You can initialize state here directly; everything goes into the same blob.
+    owner = msg.sender;
+}
+⚠️ 2. Memory Usage Limit (64KB heap)
+Wrong (accessing large memory offset):
+
+mstore(70000, 0x42) // >64k will trap the contract
+Correct (safe memory access):
+
+mstore(1024, 0x42) // within 64KB
+⚠️ 3. Re-entrancy Protection
+Wrong (assuming transfer/send are safe):
+
+(bool sent, ) = recipient.send(1 ether);
+require(sent, "Failed");
+Correct (use re-entrancy guard):
+
+modifier noReentrant() {
+    require(!locked);
+    locked = true;
+    _;
+    locked = false;
+}
+function withdraw() external noReentrant {
+    (bool ok, ) = msg.sender.call{value: 1 ether}("");
+    require(ok);
+}
+⚠️ 4. gas, gaslimit behavior
+Wrong (assuming accurate gas):
+
+uint256 remaining = gasleft(); // misleading in PolkaVM
+Correct (know this returns only ref_time weight info):
+
+// Use it only for logging or informational purposes
+⚠️ 5. create, create2 deployment
+Wrong (manual deployment via YUL or assembly):
+
+let deployed := create(0, add(bytecode, 0x20), mload(bytecode))
+Correct (use standard Solidity syntax):
+
+MyChild c = new MyChild(arg1, arg2);
+⚠️ 6. Invalid Opcodes
+Wrong:
+
+selfdestruct(address)
+extcodecopy(someAddr, 0, 0, 32)
+Correct:
+Avoid these completely – they throw compile-time errors in revive.
+
+⚠️ 7. Using datasize, dataoffset, calldataload in constructors
+Wrong:
+
+let arg := calldataload(0) // always returns 0 in constructor
+Correct:
+
+constructor(uint256 x) {
+    storedX = x; // let solc handle the calldata parsing
+}
+⚠️ 8. msize might differ
+Wrong:
+
+let size := msize()
+Correct:
+Don't rely on msize for correctness; it might be optimized away.
+
+⚠️ 9. Avoid hardcoding offsets in memory
+Wrong:
+
+mstore(0x200000, 0x42) // invalid in 64KB heap
+Correct:
+
+mstore(2048, 0x42)
+⚠️ 10. blobhash, blobbasefee, pc
+Wrong:
+
+let val := pc()
+let fee := blobbasefee()
+Correct:
+Avoid completely; these opcodes are not available and will error out.
+
+✅ General Recommendation
+Stick to high-level Solidity, let resolc manage YUL and deployment mechanics, and avoid deep EVM optimizations or manual YUL tricks unless you are sure it’s compatible

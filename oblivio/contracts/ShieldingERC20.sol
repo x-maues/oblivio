@@ -1,0 +1,71 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "./Poseidon.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+
+contract ShieldingERC20 is ERC20, Pausable, Ownable, ReentrancyGuard {
+    Poseidon public poseidon;
+    mapping(bytes32 => bool) public commitments;
+    mapping(address => bool) public isBlacklisted;
+    
+    event CommitmentCreated(bytes32 indexed commitment, address indexed recipient, uint256 amount);
+    event AddressBlacklisted(address indexed account);
+    event AddressUnblacklisted(address indexed account);
+
+    constructor(address _poseidonAddress) ERC20("ShieldingToken", "SHT") Ownable(msg.sender) {
+        poseidon = Poseidon(_poseidonAddress);
+    }
+
+    function pause() external onlyOwner {
+        _pause();
+    }
+
+    function unpause() external onlyOwner {
+        _unpause();
+    }
+
+    function blacklist(address account) external onlyOwner {
+        isBlacklisted[account] = true;
+        emit AddressBlacklisted(account);
+    }
+
+    function unblacklist(address account) external onlyOwner {
+        isBlacklisted[account] = false;
+        emit AddressUnblacklisted(account);
+    }
+
+    function shieldedTransfer(address recipient, uint256 amount) public nonReentrant whenNotPaused {
+        require(!isBlacklisted[msg.sender], "Sender is blacklisted");
+        require(!isBlacklisted[recipient], "Recipient is blacklisted");
+        require(amount > 0, "Amount must be greater than 0");
+        require(balanceOf(msg.sender) >= amount, "Insufficient balance");
+
+        // Create a commitment using Poseidon hash
+        bytes32 commitment = bytes32(poseidon.poseidon(uint256(uint160(recipient)), amount));
+        commitments[commitment] = true;
+
+        // Transfer tokens
+        _transfer(msg.sender, recipient, amount);
+        
+        emit CommitmentCreated(commitment, recipient, amount);
+    }
+
+    function verifyCommitment(address recipient, uint256 amount) public view returns (bool) {
+        bytes32 commitment = bytes32(poseidon.poseidon(uint256(uint160(recipient)), amount));
+        return commitments[commitment];
+    }
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual override whenNotPaused {
+        require(!isBlacklisted[from], "Sender is blacklisted");
+        require(!isBlacklisted[to], "Recipient is blacklisted");
+        super._beforeTokenTransfer(from, to, amount);
+    }
+} 
