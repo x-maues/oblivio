@@ -131,7 +131,7 @@ export default function Home() {
         </div>
         <div className="card">
           <h2 className="text-2xl font-bold mb-4">PolkaVM Optimized</h2>
-          <p className="text-shield-text">Leverages PolkaVM's enhanced capabilities for efficient execution of privacy-preserving operations.</p>
+          <p className="text-shield-text">Leverages PolkaVM&apos;s enhanced capabilities for efficient execution of privacy-preserving operations.</p>
         </div>
       </section>
 

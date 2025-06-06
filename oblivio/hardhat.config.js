@@ -35,5 +35,8 @@ module.exports = {
     apiKey: {
       paseoPasset: "your-api-key" // You'll need to get this from the explorer
     }
+  },
+  ethers: {
+    version: "6"
   }
 }; 
