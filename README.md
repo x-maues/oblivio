@@ -2,7 +2,7 @@
 
 ## Overview
 
-Oblivio is a privacy-preserving token system built for the Polkadot AssetHub Hackathon 2025. At its core is an efficient implementation of the Poseidon hash function in Solidity, optimized for PolkaVM. This implementation serves as the cryptographic foundation for privacy-preserving transactional operations in the Polkadot ecosystem.
+Oblivio is a privacy-preserving token system built for the Polkadot AssetHub Parachain. At its core is an efficient implementation of the Poseidon hash function in Solidity, optimized for PolkaVM. This implementation serves as the cryptographic foundation for privacy-preserving transactional operations in the Polkadot ecosystem.
 
 ## Vision & Purpose
 
@@ -17,7 +17,16 @@ Oblivio aims to bring efficient cryptographic primitives to Polkadot AssetHub wh
 
 ### Core Component: Poseidon Hash Function
 
-The Poseidon hash function is a cryptographic primitive designed specifically for zero-knowledge proof systems. This implementation (`Poseidon.sol`) is practical, optimized and standardized for PolkaVM and serves as the foundation for privacy-preserving operations.
+The Poseidon hash function is a very important cryptographic primitive designed specifically for zero-knowledge proof systems. Currently there is no pure Solidity implementation of this function, due to limitations of VMs. 
+This implementation (`Poseidon.sol`) is practical, optimized and standardized for PolkaVM and serves as the foundation for privacy-preserving operations.
+
+Deployed on Paseo Passet Hub - 0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6
+
+# Core Contracts
+
+1. MockToken.sol (could be any token deployed on Passet Hub) - 0xAF828083EbD6B4225a2c8fb5d02bE1108AF95060
+2. Poseidon.sol (The key hash function used) - 0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6
+3. CommitmentPool, PrivateTransfer are separate methods of enabling 'unlinking of transaction'
 
 #### Key Features of Our Poseidon Implementation:
 
@@ -109,6 +118,7 @@ npx hardhat run scripts/deploy.js --network paseoPasset
    - Enhanced mixing mechanisms
 
 2. **ERC-20 Modifications**
+   - Create special ERC 20 tokens that enable even more privacy
 
 3. **Analytics**
    - Privacy-preserving analytics
