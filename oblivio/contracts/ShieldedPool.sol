@@ -76,7 +76,12 @@ contract ShieldedPool is ReentrancyGuard {
 
         // Verify commitments match withdrawal details
         for (uint256 i = 0; i < commitments.length; i++) {
-            bytes32 expectedCommitment = bytes32(poseidon.poseidon(uint256(uint160(recipients[i])), amounts[i]));
+            bytes32 expectedCommitment = bytes32(poseidon.poseidon(
+                uint256(uint160(recipients[i])),
+                amounts[i],
+                uint256(block.timestamp),
+                uint256(i) // salt
+            ));
             require(commitments[i] == expectedCommitment, "Invalid commitment");
         }
 

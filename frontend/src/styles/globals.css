@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Quicksand:wght@300..700&display=swap');
+
 @import "tailwindcss";
 
 html, body {
@@ -6,7 +8,7 @@ html, body {
     min-height: 100vh;
     height: 100%;
     background: #ffffff;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Quicksand", sans-serif;
     color: #1A1A1A;
     scroll-behavior: smooth;
   }
