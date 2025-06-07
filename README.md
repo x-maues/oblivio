@@ -2,6 +2,8 @@
 
 > **Breaking the chain of visibility** - Bringing true financial privacy to the Polkadot ecosystem with cutting-edge cryptographic primitives.
 
+![Oblivio Demo](./frontend/public/demo.png)
+
 [![Polkadot](https://img.shields.io/badge/Built%20for-Polkadot%20AssetHub-E6007A?style=flat-square&logo=polkadot)](https://polkadot.network/)
 [![PolkaVM](https://img.shields.io/badge/Optimized%20for-PolkaVM-FF6B6B?style=flat-square)](https://polkadot.network/)
 [![Solidity](https://img.shields.io/badge/Solidity-^0.8.0-363636?style=flat-square&logo=solidity)](https://soliditylang.org/)
