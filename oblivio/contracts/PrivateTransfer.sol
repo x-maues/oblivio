@@ -1,66 +1,83 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./Poseidon.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-contract PrivateTransfer is ReentrancyGuard {
-    Poseidon public poseidon;
-    IERC20 public token;
-    
-    // Commitment => amount
-    mapping(uint256 => uint256) public commitments;
-    // Nullifier => bool (to prevent double spending)
-    mapping(uint256 => bool) public nullifiers;
-    
-    event CommitmentCreated(uint256 commitment, uint256 amount);
-    event FundsWithdrawn(uint256 nullifier, address recipient, uint256 amount);
-    
+
+
+/// @title Shielded Token System using Poseidon hash
+contract ShieldedTokenSystem is Poseidon {
+    ERC20 public token;
+
+    struct Commitment {
+        uint256 amount;
+        uint256 nullifierHash;
+        bool exists;
+    }
+
+    mapping(uint256 => Commitment) public commitments;
+    mapping(uint256 => bool) public nullifierUsed;
+
+    event Deposit(uint256 indexed commitmentHash, uint256 amount);
+    event Withdrawal(uint256 indexed nullifierHash, address to, uint256 amount);
+
     constructor(address _token) {
-        poseidon = new Poseidon();
-        token = IERC20(_token);
+        token = ERC20(_token);
     }
-    
-    // Create a commitment by depositing tokens
-    function createCommitment(uint256 amount, uint256 secret) external nonReentrant {
-        require(amount > 0, "Amount must be greater than 0");
+
+    function deposit(uint256 secret, uint256 nullifier, uint256 amount) external {
+        require(amount > 0, "Amount must be positive");
         require(token.transferFrom(msg.sender, address(this), amount), "Transfer failed");
-        
-        // Create commitment using Poseidon hash
-        uint256 commitment = poseidon.poseidon(amount, secret, 0, 0);
-        
-        commitments[commitment] = amount;
-        emit CommitmentCreated(commitment, amount);
+
+        uint256 commitmentHash = hash(secret, nullifier);
+        require(!commitments[commitmentHash].exists, "Already deposited");
+
+        commitments[commitmentHash] = Commitment({
+            amount: amount,
+            nullifierHash: hash(nullifier, secret),
+            exists: true
+        });
+
+        emit Deposit(commitmentHash, amount);
     }
-    
-    // Withdraw funds using a nullifier
-    function withdraw(
-        uint256 amount,
-        uint256 secret,
-        uint256 nullifier
-    ) external nonReentrant {
-        require(amount > 0, "Amount must be greater than 0");
-        require(!nullifiers[nullifier], "Nullifier already used");
-        
-        // Verify the commitment
-        uint256 commitment = poseidon.poseidon(amount, secret, 0, 0);
-        require(commitments[commitment] >= amount, "Insufficient commitment");
-        
-        // Mark nullifier as used
-        nullifiers[nullifier] = true;
-        
-        // Update commitment amount
-        commitments[commitment] -= amount;
-        
-        // Transfer tokens to recipient
-        require(token.transfer(msg.sender, amount), "Transfer failed");
-        
-        emit FundsWithdrawn(nullifier, msg.sender, amount);
+
+    function withdraw(uint256 secret, uint256 nullifier, uint256 withdrawAmount, address to) external {
+        uint256 commitmentHash = hash(secret, nullifier);
+        require(commitments[commitmentHash].exists, "Invalid commitment");
+        require(commitments[commitmentHash].amount >= withdrawAmount, "Insufficient committed amount");
+
+        uint256 nullifierHash = hash(nullifier, secret);
+        require(nullifierHash == commitments[commitmentHash].nullifierHash, "Invalid nullifier");
+        require(!nullifierUsed[nullifierHash], "Nullifier already used");
+
+        if (withdrawAmount == commitments[commitmentHash].amount) {
+            nullifierUsed[nullifierHash] = true;
+            delete commitments[commitmentHash];
+        } else {
+            commitments[commitmentHash].amount -= withdrawAmount;
+        }
+
+        require(token.transfer(to, withdrawAmount), "Transfer failed");
+
+        emit Withdrawal(nullifierHash, to, withdrawAmount);
     }
-    
-    // Get commitment balance
-    function getCommitmentBalance(uint256 commitment) external view returns (uint256) {
-        return commitments[commitment];
+
+    function generateCommitmentHash(uint256 secret, uint256 nullifier) external view returns (uint256) {
+        return hash(secret, nullifier);
     }
-} 
+
+    function generateNullifierHash(uint256 nullifier, uint256 secret) external view returns (uint256) {
+        return hash(nullifier, secret);
+    }
+
+    function checkCommitment(uint256 commitmentHash) external view returns (bool exists, uint256 amount) {
+        Commitment memory commitment = commitments[commitmentHash];
+        return (commitment.exists, commitment.amount);
+    }
+
+    function isNullifierUsed(uint256 nullifierHash) external view returns (bool) {
+        return nullifierUsed[nullifierHash];
+    }
+}
+
