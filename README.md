@@ -43,7 +43,7 @@ bytes32 commitment = bytes32(poseidon.poseidon(
 ));
 ```
 
-**📍 Deployed on Paseo Asset Hub:** `0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6`
+#📍 Deployed on Paseo Asset Hub:** `0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6`
 
 #### 🎯 **Why Poseidon?**
 
@@ -56,7 +56,7 @@ bytes32 commitment = bytes32(poseidon.poseidon(
 
 ---
 
-## 🛠️ **Smart Contract Ecosystem**
+## 🛠️ **Smart Contracts**
 
 ### 🎭 **Privacy Components**
 
