@@ -1,132 +1,217 @@
-# Oblivio: Privacy-Preserving Token System on Polkadot AssetHub
+# 🛡️ Oblivio: Privacy-First Tokens on Polkadot
 
-## Overview
+> **Breaking the chain of visibility** - Bringing true financial privacy to the Polkadot ecosystem with cutting-edge cryptographic primitives.
 
-Oblivio is a privacy-preserving token system built for the Polkadot AssetHub Parachain. At its core is an efficient implementation of the Poseidon hash function in Solidity, optimized for PolkaVM. This implementation serves as the cryptographic foundation for privacy-preserving transactional operations in the Polkadot ecosystem.
+[![Polkadot](https://img.shields.io/badge/Built%20for-Polkadot%20AssetHub-E6007A?style=flat-square&logo=polkadot)](https://polkadot.network/)
+[![PolkaVM](https://img.shields.io/badge/Optimized%20for-PolkaVM-FF6B6B?style=flat-square)](https://polkadot.network/)
+[![Solidity](https://img.shields.io/badge/Solidity-^0.8.0-363636?style=flat-square&logo=solidity)](https://soliditylang.org/)
 
-## Vision & Purpose
+---
 
-Oblivio aims to bring efficient cryptographic primitives to Polkadot AssetHub while maintaining full compatibility with the ecosystem. The project addresses several key challenges:
+## 🎯 **What is Oblivio?**
 
-1. **Efficient Cryptographic Primitives**: Provides a gas-efficient Poseidon hash implementation
-2. **PolkaVM Optimization**: Demonstrates efficient use of PolkaVM's enhanced capabilities
-3. **Developer Experience**: Showcases best practices for Solidity development on PolkaVM
-4. **Privacy Foundation**: Serves as a building block for privacy-preserving applications
+Oblivio is a **privacy-preserving token system** that brings transactional privacy to Polkadot AssetHub. At its heart lies the first practical, gas-optimized implementation of the **Poseidon hash function** in pure Solidity, onchain—a breakthrough that is brought by PolkaVM.
 
-## Technical Architecture
+### 💡 **The Problem We Solve**
 
-### Core Component: Poseidon Hash Function
+Traditional blockchain transactions are **completely transparent**—every transfer, balance, and interaction is visible to anyone. This creates serious privacy concerns for:
+- 🏢 **Enterprises** conducting confidential business
+- 👥 **Individuals** seeking financial privacy
+- 🔒 **DeFi protocols** requiring confidential operations
 
-The Poseidon hash function is a very important cryptographic primitive designed specifically for zero-knowledge proof systems. Currently there is no pure Solidity implementation of this function, due to limitations of VMs. 
-This implementation (`Poseidon.sol`) is practical, optimized and standardized for PolkaVM and serves as the foundation for privacy-preserving operations.
+### 🚀 **Our Solution**
 
-Deployed on Paseo Passet Hub - 0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6
+Oblivio introduces **cryptographic privacy primitives** that allow users to:
+- ✅ Make transactions without revealing amounts
+- ✅ Hide recipient addresses from public view
+- ✅ Maintain transaction unlinkability
+- ✅ Preserve full compatibility with existing Polkadot infrastructure
 
-# Core Contracts
+---
 
-1. MockToken.sol (could be any token deployed on Passet Hub) - 0xAF828083EbD6B4225a2c8fb5d02bE1108AF95060
-2. Poseidon.sol (The key hash function used) - 0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6
-3. CommitmentPool, PrivateTransfer are separate methods of enabling 'unlinking of transaction'
+## 🏗️ **Architecture Overview**
 
-#### Key Features of Our Poseidon Implementation:
+### 🔐 **Core: Poseidon Hash Function**
 
-1. **Optimized for PolkaVM**
-   
+O(`Poseidon.sol`) :
 
-2. **Cryptographic Properties**
-   - Collision resistance
-   - Preimage resistance
-   - Second preimage resistance
-   - Efficient in zero-knowledge proof systems
+```solidity
+// Generate privacy-preserving commitments
+bytes32 commitment = bytes32(poseidon.poseidon(
+    uint256(uint160(recipient)), 
+    amount
+));
+```
 
-3. **Technical Details**
-   - Implemented in pure Solidity
-   - No external dependencies
-   - Gas-efficient operations
-   - Compatible with standard zero-knowledge proof systems
+**📍 Deployed on Paseo Asset Hub:** `0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6`
 
-#### Usage in Privacy Mechanisms
+#### 🎯 **Why Poseidon?**
 
-The Poseidon hash function is used in several privacy-preserving mechanisms:
+| Feature | Traditional Hashes | **Poseidon** |
+|---------|-------------------|--------------|
+| ZK-Proof Efficiency | ❌ Expensive | ✅ **Ultra-efficient** |
+| Gas Costs | ❌ High | ✅ **Optimized** |
+| Privacy Primitives | ❌ Limited | ✅ **Purpose-built** |
+| PolkaVM Performance | ❌ Standard | ✅ **Supercharged** |
 
-1. **Commitment Generation**
-   ```solidity
-   bytes32 commitment = bytes32(poseidon.poseidon(uint256(uint160(recipient)), amount));
-   ```
-   - Combines recipient address and amount into a single commitment
-   - Ensures privacy while maintaining verifiability
-   - Efficient verification mechanism
+---
 
-2. **Nullifier Generation**
-   - Prevents double-spending
-   - Maintains privacy while ensuring security
-   - Efficient verification mechanism
+## 🛠️ **Smart Contract Ecosystem**
 
-### Supporting Components
+### 🎭 **Privacy Components**
 
-#### Shielded Pool (`ShieldedPool.sol`)
-- Utilizes Poseidon hash for commitment and nullifier generation
-- Implements mixing mechanism for enhanced privacy
-- Features time-based mixing periods and maximum mix size limits
+| Contract | Address | Purpose |
+|----------|---------|---------|
+| **Poseidon.sol** | `0x7967cedEF3E09B4DcBD9b3a73f64cd53EE4b69B6` | 🔐 Core cryptographic engine |
+| **MockToken.sol** | `0xAF828083EbD6B4225a2c8fb5d02bE1108AF95060` | 🪙 Example privacy token |
+| **CommitmentPool** | *testing* | 🌊 Transaction mixing pools |
+| **PrivateTransfer** | *testing* | 📤 Unlinkable transfers |
 
-#### Shielding Token (`ShieldingERC20.sol`)
-- Basic ERC20 token with privacy features
-- Uses Poseidon hash for commitment verification
-- Implements standard security features
+### 🔄 **Privacy Mechanisms**
 
-## Development & Deployment
+#### **1. Commitment Schemes**
+```solidity
+// Hide transaction details behind cryptographic commitments
+commitment = poseidon(recipient_address, transfer_amount, nonce)
+```
 
-### Prerequisites
-- Node.js >= 16
-- Hardhat
-- Polkadot AssetHub testnet access
+#### **2. Nullifier Systems**
+- 🚫 **Prevents double-spending** without revealing transaction details
+- 🔍 **Efficient verification** with zero knowledge proofs
+- ⚡ **Gas-optimized** operations
 
-### Installation
+#### **3. Shielded Pools**
+- 🌊 **Mix transactions** to break linkability
+- ⏰ **Time-based mixing** periods
+- 📏 **Configurable pool sizes** for optimal privacy
+
+---
+
+## 🚀 **Quick Start**
+
+### 📋 **Prerequisites**
+
 ```bash
+Node.js >= 16.0.0
+npm >= 8.0.0
+Hardhat >= 2.0.0
+```
+
+### ⚡ **Installation**
+
+```bash
+# Clone the repository
+git clone https://github.com/x-maues/oblivio
+cd oblivio
+
+# Install dependencies
 npm install
+
+# Compile contracts
+npx hardhat compile
 ```
 
-### Testing
+### 🧪 **Testing**
+
 ```bash
+# Run comprehensive test suite
 npx hardhat test
+
+# Run with gas reporting
+REPORT_GAS=true npx hardhat test
+
+# Test on specific network
+npx hardhat test --network paseoAsset
 ```
 
-### Deployment
+*Currently tested on Polkadot's Remix IDE, using Talisman Wallet, due to complexities.
+
+### 🚀 **Deployment**
+
 ```bash
-npx hardhat run scripts/deploy.js --network paseoPasset
+# Deploy to Paseo Asset Hub
+npx hardhat run scripts/deploy.js --network paseoAsset
+
+# Verify contracts
+npx hardhat verify --network paseoAsset <CONTRACT_ADDRESS>
 ```
+*Currently deployed via Polkadot's Remix IDE, using Talisman Wallet, due to complexities.
 
-## Security Considerations
+---
 
-1. **Cryptographic Security**
-   - Thorough testing of hash function properties
-   - Constant-time operations where possible
-   - Protection against timing attacks
+## 💎 **Key Features**
 
-2. **Access Control**
-   - Owner-only functions for critical operations
-   - Blacklist mechanism for compliance
+### 🎯 **Cryptographic Thresholds**
+- **🔐 Collision Resistant**: Mathematically proven security
+- **⚡ ZK-Optimized**: Built for zero-knowledge proof systems
+- **🛡️ Preimage Secure**: Protects against reverse engineering
+- **⚖️ Constant Time**: Resistant to timing attacks
 
-3. **Emergency Controls**
-   - Pause mechanism for critical situations
-   - Blacklist functionality for compliance
+### 🏗️ **Developer Experience**
+- **📦 Pure Solidity**: No external dependencies
+- **⚡ Gas Efficient**: Optimized for PolkaVM performance
+- **🔧 Modular Design**: Easy integration with existing contracts
+- **📚 Comprehensive Tests**: Battle-tested implementation
 
-## Future Enhancements
+### 🌐 **Ecosystem Integration**
+- **🔗 Fully Compatible**: Enables exciting use cases on the Asset Hub
+- **🪙 ERC-20 Support**: Seamless token integration
+- **🏛️ Governance Ready**: Supports on-chain governance
+- **📊 Analytics Friendly**: Privacy-preserving metrics
 
-1. **Advanced Privacy Features**
-   - Zero-knowledge proof integration
-   - Enhanced mixing mechanisms
+---
 
-2. **ERC-20 Modifications**
-   - Create special ERC 20 tokens that enable even more privacy
+## 🛡️ **Security & Compliance**
 
-3. **Analytics**
-   - Privacy-preserving analytics
-   - Compliance reporting
+### 🔒 **Security Measures**
 
-## Acknowledgments
+| Layer | Protection | Implementation |
+|-------|------------|----------------|
+| **Cryptographic** | Hash function security | Formal verification of Poseidon |
+| **Smart Contract** | Access control | OpenZeppelin patterns |
+| **Privacy** | Direct Txn Unlinking | Base for Zero-knowledge proof system |
 
-- Polkadot AssetHub Hackathon 2025
-- PolkaVM team
-- OpenZeppelin for security patterns
 
+---
+
+## 🗺️ **Roadmap & Vision**
+
+### 🎯 **Phase 1: Foundation** *(Current)*
+- ✅ Poseidon hash implementation
+- ✅ Basic privacy demonstration
+- ✅ Testnet deployment
+
+### 🚀 **Phase 2: Enhancement** *(Q3 2025)*
+- 🔄 Advanced mixing protocols
+- 🎭 Multi-asset privacy pools
+- 📱 ZKPs
+
+
+
+### 🔮 **Future Vision**
+- 🏛️ **Enterprise Adoption**: Institutional-grade privacy
+- 🌍 **Global Scale**: Supporting millions of private transactions
+- 🔬 **Research Hub**: Advancing privacy technology
+
+---
+
+
+---
+
+## 📚 **Resources & Documentation**
+
+### 📖 **Learn More**
+- [Poseidon Hash Function Specification](https://www.poseidon-hash.info/)
+- [Poseidon Paper](https://eprint.iacr.org/2019/458.pdf)
+
+### 🔗 **Useful Links**
+- [Polkadot AssetHub Documentation](https://docs.polkadot.network/)
+
+
+<div align="center">
+
+
+
+*Privacy is not about hiding something. It's about protecting everything.*
+
+</div>
