@@ -41,6 +41,7 @@ export default function Settings() {
               <div className="flex space-x-8">
                 <Link href="/" className="nav-link">Home</Link>
                 <Link href="/dashboard" className="nav-link">Dashboard</Link>
+                <Link href="/privacy" className="nav-link">Privacy</Link>
                 <Link href="/settings" className="nav-link active">Settings</Link>
               </div>
             </div>

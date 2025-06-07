@@ -99,6 +99,7 @@ export default function Home() {
               <div className="flex space-x-8">
                 <Link href="/" className="nav-link active">Home</Link>
                 <Link href="/dashboard" className="nav-link">Dashboard</Link>
+                <Link href="/privacy" className="nav-link">Privacy</Link>
                 <Link href="/settings" className="nav-link">Settings</Link>
               </div>
             </div>
