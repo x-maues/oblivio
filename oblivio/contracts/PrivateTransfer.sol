@@ -6,8 +6,8 @@ import "./Poseidon.sol";
 
 
 
-/// @title Shielded Token System using Poseidon hash
-contract ShieldedTokenSystem is Poseidon {
+/// @title Private Token Transfer using Poseidon hash
+contract PrivateTransfer is Poseidon {
     ERC20 public token;
 
     struct Commitment {
